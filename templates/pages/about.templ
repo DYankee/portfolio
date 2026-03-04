@@ -3,6 +3,7 @@ package pages
 import (
 	"fmt"
 	"github.com/DYankee/resume2/models"
+	"github.com/DYankee/resume2/templates/components"
 )
 
 templ AboutPage(
@@ -27,18 +28,16 @@ templ AboutContent(
 	// ---- About Me ----
 	<section class="mx-auto max-w-7xl px-6 py-20">
 		<div class="flex flex-col md:flex-row items-center gap-12">
-			<div class="w-60 h-80 rounded-full overflow-hidden shrink-0 border-2 border-purple-500">
-			  <img
-			    src="/static/imgs/headshot.png"
-			    alt="Picture of zachary geary"
-			    class="w-full h-full object-cover"
-			    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-			  />
-			  <div
-			    class="w-full h-full bg-linear-to-br from-purple-500 to-blue-600 items-center justify-center text-5xl font-bold hidden"
-			  >
-			    Z
-			  </div>
+			<div class="flex flex-col items-center">
+				<div class="w-60 h-70 rounded-full overflow-hidden shrink-0 border-2 border-purple-500">
+				  <img
+				    src="/static/imgs/headshot2.png"
+				    alt="Picture of zachary geary"
+				    class="w-full h-full object-cover"
+				    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+				  />
+				</div>
+				@components.LinkTree()
 			</div>
 			<div>
 				<h1 class="text-4xl font-bold mb-4">
@@ -51,7 +50,7 @@ templ AboutContent(
 					Currently open to work opportunities or internships.
 				</p>
 				<br>
-				<p>
+				<p class="text-lg text-gray-300 leading-relaxed max-w-2xl">
 					I currently attend SUNY Polytechnic full time pursuing a CS degree. In my free time I enjoy playing guitar, 
 					making games, coding tools for myself, and going hiking.
 				</p>
