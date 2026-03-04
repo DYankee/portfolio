@@ -8,7 +8,7 @@ type Skill struct {
 	Category    string    `json:"category"`
 	Description string    `json:"description"`
 	IconURL     string    `json:"icon_url"`
-	Proficiency int8      `json:"proficiency"` // e.g. "Beginner", "Intermediate", "Advanced"
+	Proficiency int8      `json:"proficiency"`
 	Deleted     bool      `json:"deleted"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
@@ -21,17 +21,18 @@ type Skill_category struct {
 }
 
 type Project struct {
-	ID          int64     `json:"id"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	LongDesc    string    `json:"long_desc"`
-	ImageURL    string    `json:"image_url"`
-	RepoURL     string    `json:"repo_url"`
-	LiveURL     string    `json:"live_url"`
-	Deleted     bool      `json:"deleted"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
-	DeletedAt   time.Time `json:"deleted_at"`
+	ID           int64     `json:"id"`
+	DisplayOrder int32     `json:"display_order"`
+	Title        string    `json:"title"`
+	Description  string    `json:"description"`
+	LongDesc     string    `json:"long_desc"`
+	ImageURL     string    `json:"image_url"`
+	RepoURL      string    `json:"repo_url"`
+	LiveURL      string    `json:"live_url"`
+	Deleted      bool      `json:"deleted"`
+	CreatedAt    time.Time `json:"created_at"`
+	UpdatedAt    time.Time `json:"updated_at"`
+	DeletedAt    time.Time `json:"deleted_at"`
 }
 
 type SkillUse struct {

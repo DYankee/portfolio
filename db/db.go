@@ -53,6 +53,7 @@ func (db *DB) migrate() {
 		)`,
 		`CREATE TABLE IF NOT EXISTS projects (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			display_order INTEGER DEFAULT 0,
 			title TEXT NOT NULL,
 			description TEXT NOT NULL DEFAULT '',
 			long_desc TEXT NOT NULL DEFAULT '',
@@ -332,8 +333,8 @@ func (db *DB) GetProjectByID(id int64) (*models.Project, error) {
 
 func (db *DB) CreateProject(title, description, longDesc, imageURL, repoURL, liveURL string) (int64, error) {
 	res, err := db.Conn.Exec(`
-		INSERT INTO projects (title, description, long_desc, image_url, repo_url, live_url)
-		VALUES (?, ?, ?, ?, ?, ?)`,
+		INSERT INTO projects (display_order, title, description, long_desc, image_url, repo_url, live_url)
+		VALUES (MAX(display_order + 1), ?, ?, ?, ?, ?, ?)`,
 		title, description, longDesc, imageURL, repoURL, liveURL,
 	)
 	if err != nil {
