@@ -31,7 +31,7 @@ func Navbar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"sticky top-0 z-50 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md\"><div class=\"mx-auto flex max-w-6xl items-center justify-between px-6 py-4\"><a href=\"/\" class=\"text-xl font-bold text-white hover:text-purple-400 transition\">Zack</a><div class=\"flex gap-8 text-sm font-medium\"><a href=\"/\" class=\"hover:text-purple-400 transition\" hx-get=\"/\" hx-target=\"#content\" hx-push-url=\"true\" hx-swap=\"innerHTML\">About</a> <a href=\"/projects\" class=\"hover:text-purple-400 transition\" hx-get=\"/projects\" hx-target=\"#content\" hx-push-url=\"true\" hx-swap=\"innerHTML\">Projects</a></div></div></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"sticky top-0 z-50 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md\"><div class=\"mx-auto flex max-w-6xl items-center justify-between px-6 py-4\"><a href=\"/\" class=\"text-xl font-bold text-white hover:text-purple-400 transition\">Zack</a><div class=\"flex gap-8 text-sm font-medium\"><a href=\"/\" class=\"hover:text-purple-400 transition\" hx-get=\"/\" hx-target=\"#content\" hx-push-url=\"true\" hx-swap=\"innerHTML\">About</a> <a href=\"/projects\" class=\"hover:text-purple-400 transition\" hx-get=\"/projects\" hx-target=\"#content\" hx-push-url=\"true\" hx-swap=\"innerHTML\">Projects</a> <a href=\"/resume\" class=\"hover:text-purple-400 transition\" hx-get=\"/resume\" hx-target=\"#content\" hx-push-url=\"true\" hx-swap=\"innerHTML\">Resume</a></div></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

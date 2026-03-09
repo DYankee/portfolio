@@ -1,0 +1,288 @@
+// templates/pages/resume.templ
+package pages
+
+import (
+	"fmt"
+	"github.com/DYankee/resume2/models"
+)
+
+
+templ ResumePage(
+	skills []models.Skill,
+	experiences []models.Experience,
+	education []models.Education,
+    ) {
+    @Layout("Resume"){
+        <div id="content">
+            @ResumeContent(skills, experiences, education)
+        </div>
+    }
+}
+
+templ ResumeContent(
+	skills []models.Skill,
+	experiences []models.Experience,
+	education []models.Education,
+) {
+		<style>
+			@media print {
+				@page { margin: 0; }
+				body { background: white !important; color: black !important; }
+				body { padding: 1cm !important; }
+				.no-print { display: none !important; }
+				.print-section { break-inside: avoid; }
+				main { padding: 0 !important; }
+				footer, nav { display: none !important; }
+				a { color: black !important; text-decoration: underline; }
+				.resume-container {
+					max-width: 100% !important;
+					padding: 0 !important;
+					margin: 0 !important;
+				}
+				.resume-card {
+					background: white !important;
+					border: none !important;
+					box-shadow: none !important;
+					padding: 0 !important;
+				}
+				.print-text-black { color: black !important; }
+				.print-text-gray { color: #374151 !important; }
+				.print-border { border-color: #d1d5db !important; }
+			}
+		</style>
+
+		<section class="resume-container max-w-6xl mx-auto px-4 py-12">
+			<!-- Download Button -->
+			<div class="no-print flex justify-end gap-3 mb-6">
+			    <a
+			        href="/resume/pdf"
+			        download="Zachary_Geary_Resume.pdf"
+			        class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500
+			               text-white font-medium px-5 py-2.5 rounded-lg
+			               transition-colors cursor-pointer no-underline"
+			    >
+			        <svg
+			            xmlns="http://www.w3.org/2000/svg"
+			            class="h-5 w-5"
+			            fill="none"
+			            viewBox="0 0 24 24"
+			            stroke="currentColor"
+			            stroke-width="2"
+			        >
+			            <path
+			                stroke-linecap="round"
+			                stroke-linejoin="round"
+			                d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2
+			                   2 0 002 2h14a2 2 0 002-2v-3"
+			            ></path>
+			        </svg>
+			        Download PDF
+			    </a>
+			</div>
+
+			<!-- Resume Card -->
+			<div
+				class="resume-card bg-gray-900 border border-gray-800
+				       rounded-xl p-8 md:p-12 space-y-8"
+			>
+				<!-- Header -->
+				<header class="text-center border-b border-gray-700
+				               print-border pb-6"
+				>
+					<h1
+						class="text-4xl font-bold text-white
+						       print-text-black"
+					>
+						Zachary Geary
+					</h1>
+					<p
+						class="mt-2 text-gray-400 print-text-gray
+						       text-lg"
+					>
+						Software Developer
+					</p>
+					<div
+						class="mt-3 flex flex-wrap justify-center
+						       gap-4 text-sm text-gray-400
+						       print-text-gray"
+					>
+						<span>zpgeary@gmail.com</span>
+						<span>www.linkedin.com/in/zacharygeary</span>
+						<span>github.com/DYankee</span>
+					</div>
+				</header>
+
+                <!-- About me -->
+                <section class="print-section">
+					<h2
+						class="text-xl font-semibold text-white
+						       print-text-black mb-4
+						       border-b border-gray-700
+						       print-border pb-2"
+					>
+						About
+					</h2>
+				    <p class="text-gray-300">
+				    	I'm a highly motivated college student looking to gain experience in the professional world. 
+				    	I have experience developing small websites and programs, working with other developers in an 
+				    	agile like environment and interfacing with customers to ensure product satisfaction.
+				    	Currently open to work opportunities or internships.
+				    </p>
+				    <br>
+				    <p class="text-gray-300">
+				    	I currently attend SUNY Polytechnic full time pursuing a CS degree. In my free time I enjoy playing guitar, 
+				    	making games, coding tools for myself, and going hiking.
+				    </p>
+                </section>
+
+
+				<!-- Education -->
+				if len(education) > 0 {
+					<section class="print-section">
+						<h2
+							class="text-xl font-semibold text-white
+							       print-text-black mb-4
+							       border-b border-gray-700
+							       print-border pb-2"
+						>
+							Education
+						</h2>
+						<div class="space-y-4">
+							for _, edu := range education {
+								<div
+									class="flex flex-col sm:flex-row
+									       sm:justify-between
+									       sm:items-baseline"
+								>
+									<div>
+										<h3
+											class="text-lg font-medium
+											       text-indigo-400
+											       print-text-black"
+										>
+											{ edu.Degree }
+										</h3>
+										<p
+											class="text-gray-300
+											       print-text-gray"
+										>
+											{ edu.College }
+										</p>
+									</div>
+									<div
+										class="text-sm text-gray-500
+										       print-text-gray
+										       text-right"
+									>
+										if edu.Gpa > 0 {
+											<p>
+												GPA: { fmt.Sprintf("%.2f", edu.Gpa) }
+											</p>
+										}
+										if edu.In_progress {
+											<span
+												class="text-indigo-400
+												       print-text-gray
+												       text-xs font-medium"
+											>
+												In Progress
+											</span>
+										}
+									</div>
+								</div>
+							}
+						</div>
+					</section>
+				}
+
+				<!-- Experience -->
+				if len(experiences) > 0 {
+					<section class="print-section">
+						<h2
+							class="text-xl font-semibold text-white
+							       print-text-black mb-4
+							       border-b border-gray-700
+							       print-border pb-2"
+						>
+							Experience
+						</h2>
+						<div class="space-y-5">
+							for _, exp := range experiences {
+								<div>
+									<div
+										class="flex flex-col
+										       sm:flex-row
+										       sm:justify-between
+										       sm:items-baseline"
+									>
+										<h3
+											class="text-lg font-medium
+											       text-indigo-400
+											       print-text-black"
+										>
+											{ exp.Title }
+										</h3>
+										<span
+											class="text-sm text-gray-500
+											       print-text-gray"
+										>
+											{ exp.StartDate[:7] } { "  -  " }  
+											if exp.EndDate == "" {
+												Present
+											} else {
+												{ exp.EndDate[:7] }
+											}
+										</span>
+									</div>
+									<p
+										class="text-gray-300
+										       print-text-gray
+										       font-medium"
+									>
+										{ exp.Company }
+									</p>
+									if exp.Description != "" {
+										<p
+											class="mt-1 text-gray-400
+											       print-text-gray
+											       text-sm leading-relaxed"
+										>
+											{ exp.Description }
+										</p>
+									}
+								</div>
+							}
+						</div>
+					</section>
+				}			
+
+				<!-- Skills -->
+				if len(skills) > 0 {
+					<section class="print-section">
+						<h2
+							class="text-xl font-semibold text-white
+							       print-text-black mb-4
+							       border-b border-gray-700
+							       print-border pb-2"
+						>
+							Skills
+						</h2>
+						<div class="flex flex-wrap gap-2">
+							for _, skill := range skills {
+								<span
+									class="px-3 py-1 text-sm
+									       rounded-full bg-gray-800
+									       text-gray-300
+									       print-text-gray
+									       border border-gray-700
+									       print-border"
+								>
+									{ skill.Name }
+								</span>
+							}
+						</div>
+					</section>
+				}
+			</div>
+		</section>
+}

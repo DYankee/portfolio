@@ -28,12 +28,15 @@ func main() {
 
 	aboutH := &handlers.AboutHandler{DB: database}
 	projectsH := &handlers.ProjectsHandler{DB: database}
+	resumeH := &handlers.ResumeHandler{DB: database}
 	adminH := &handlers.AdminHandler{DB: database}
 	authH := &handlers.AuthHandler{DB: database}
 
 	// Public pages
 	e.GET("/", aboutH.HandleAboutPage)
 	e.GET("/projects", projectsH.HandleProjectsPage)
+	e.GET("/resume", resumeH.HandleResumePage)
+	e.GET("/resume/pdf", resumeH.HandleResumePDF)
 
 	// Public HTMX endpoints
 	e.GET("/api/skills", aboutH.HandleFilteredSkills)
