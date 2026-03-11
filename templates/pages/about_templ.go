@@ -100,7 +100,7 @@ func AboutContent(
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<section class=\"mx-auto max-w-7xl px-6 py-20\"><div class=\"flex flex-col md:flex-row items-center gap-12\"><div class=\"flex flex-col items-center\"><div class=\"w-60 h-70 rounded-full overflow-hidden shrink-0 border-2 border-purple-500\"><img src=\"/static/imgs/headshot.png\" alt=\"Picture of zachary geary\" class=\"w-full h-full object-cover\" onerror=\"this.style.display='none'; this.nextElementSibling.style.display='flex';\"></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<section class=\"mx-auto max-w-7xl px-6 py-20\"><div class=\"flex flex-col md:flex-row items-center gap-12\"><div class=\"flex flex-col items-center\"><div class=\"w-60 h-70 rounded-full overflow-hidden shrink-0 border-2 border-purple-500\"><img src=\"/static/imgs/headshot.jpg\" alt=\"Picture of zachary geary\" class=\"w-full h-full object-cover\" onerror=\"this.style.display='none'; this.nextElementSibling.style.display='flex';\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -333,8 +333,8 @@ func (db *DB) GetProjectByID(id int64) (*models.Project, error) {
 
 func (db *DB) CreateProject(title, description, longDesc, imageURL, repoURL, liveURL string) (int64, error) {
 	res, err := db.Conn.Exec(`
-		INSERT INTO projects (display_order, title, description, long_desc, image_url, repo_url, live_url)
-		VALUES (MAX(display_order + 1), ?, ?, ?, ?, ?, ?)`,
+		INSERT INTO projects (title, description, long_desc, image_url, repo_url, live_url)
+		VALUES (?, ?, ?, ?, ?, ?)`,
 		title, description, longDesc, imageURL, repoURL, liveURL,
 	)
 	if err != nil {
